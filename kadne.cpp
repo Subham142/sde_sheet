@@ -16,9 +16,13 @@ for(int i=0;i<n;i++)
 
 int sum=0,start=0,end=0,s=0;
 int maxi=INT_MIN;
+
+//for min sub array
+int min_ending_here = INT_MAX;
+int min_so_far = INT_MAX;
 for(int i=0;i<n;i++){
     sum +=arr[i];
-    //maxi=max(sum,maxi);
+    
     if(sum>maxi){
         maxi=sum;
         start=s;
@@ -29,8 +33,17 @@ for(int i=0;i<n;i++){
         sum=0;
         s=i+1;
     }
+
+      if (min_ending_here > 0)
+            min_ending_here = arr[i];
+     else
+            min_ending_here += arr[i];
+         
+        
+        min_so_far = min(min_so_far, min_ending_here); 
 }
 cout<<maxi<<" "<<(end-start + 1)<<endl;
+cout<<min_so_far<<" "<<endl;
 
 return 0;
 }
